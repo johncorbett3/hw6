@@ -48,6 +48,7 @@ window.addEventListener('DOMContentLoaded', async function(event) {
       let title = movies.results[i].title
       let image = "https://image.tmdb.org/t/p/w500" + movies.results[i].poster_path
       let movieID = movies.results[i].id
+
       // console.log(movieID)
       // console.log(title)
       // console.log(image)
@@ -75,9 +76,18 @@ window.addEventListener('DOMContentLoaded', async function(event) {
     // ⬇️ ⬇️ ⬇️
     
       let button = document.querySelector(`.movie-${movieID}`)
-        button.addEventListener("click", function() {
+        button.addEventListener("click", async function() {
         event.preventDefault()
+
         button.classList.add("opacity-20")
+        console.log(movieID)
+
+        let watchedMovies = await db.collection("movies").add({
+          text: movieID
+        })
+
+        console.log(watchedMovies)
+
       })}
   
     // ⬆️ ⬆️ ⬆️ 
