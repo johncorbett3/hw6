@@ -11,7 +11,11 @@
 // prepend with `https://image.tmdb.org/t/p/w500/` to get the 
 // complete image URL
 
+
+
 window.addEventListener('DOMContentLoaded', async function(event) {
+
+  let db = firebase.firestore()
     // Step 1: Construct a URL to get movies playing now from TMDB, fetch
     // data and put the Array of movie Objects in a variable called
     // movies. Write the contents of this array to the JavaScript
@@ -70,7 +74,6 @@ window.addEventListener('DOMContentLoaded', async function(event) {
     //   to remove the class if the element already contains it.
     // ⬇️ ⬇️ ⬇️
     
-
       let button = document.querySelector(`.movie-${movieID}`)
         button.addEventListener("click", function() {
         event.preventDefault()
@@ -97,5 +100,6 @@ window.addEventListener('DOMContentLoaded', async function(event) {
     //   database.
     // - Hint: you can use if (document) with no comparison
     //   operator to test for the existence of an object.
+
   })
   
