@@ -51,9 +51,9 @@ window.addEventListener('DOMContentLoaded', async function(event) {
       document.querySelector(".movies").insertAdjacentHTML("beforeend",`
     <div class="w-1/5 p-4 movie-${movieID}">
     <img src=${image} class="w-full">
-    <a href="${movieID}" class="watched-button block text-center text-white bg-green-500 mt-4 px-4 py-2 rounded">I've watched this!</a>
+    <a href="#" class="watched-button block text-center text-white bg-green-500 mt-4 px-4 py-2 rounded">I've watched this!</a>
     </div>  
-    `)}
+    `)
   
     // ⬆️ ⬆️ ⬆️ 
     // End Step 2
@@ -70,13 +70,12 @@ window.addEventListener('DOMContentLoaded', async function(event) {
     //   to remove the class if the element already contains it.
     // ⬇️ ⬇️ ⬇️
     
-      
-      let button = document.querySelector(".watched-button")
 
-        button.addEventListener("click", async function() {
+      let button = document.querySelector(`.movie-${movieID}`)
+        button.addEventListener("click", function() {
         event.preventDefault()
         button.classList.add("opacity-20")
-      })
+      })}
   
     // ⬆️ ⬆️ ⬆️ 
     // End Step 3
