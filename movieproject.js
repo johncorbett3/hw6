@@ -18,7 +18,6 @@ window.addEventListener('DOMContentLoaded', async function(event) {
     // console to ensure you've got good data
     // ⬇️ ⬇️ ⬇️
 
-    event.preventDefault()  
     let response = await fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=6a296237a812d2952b0bd4fe4c93d9d5&language=en-US")
     let movies = await response.json()
     console.log(movies)
@@ -44,13 +43,15 @@ window.addEventListener('DOMContentLoaded', async function(event) {
     for (let i = 0; i < movies.results.length; i++) {
       let title = movies.results[i].title
       let image = "https://image.tmdb.org/t/p/w500" + movies.results[i].poster_path
+      let movieID = movies.results[i].id
+      // console.log(movieID)
       // console.log(title)
       // console.log(image)
 
       document.querySelector(".movies").insertAdjacentHTML("beforeend",`
-    <div class="w-1/5 p-4 movie-abcdefg1234567">
+    <div class="w-1/5 p-4 movie-${movieID}">
     <img src=${image} class="w-full">
-    <a href="#" class="watched-button block text-center text-white bg-green-500 mt-4 px-4 py-2 rounded">I've watched this!</a>
+    <a href="${movieID}" class="watched-button block text-center text-white bg-green-500 mt-4 px-4 py-2 rounded">I've watched this!</a>
     </div>  
     `)}
   
@@ -68,9 +69,14 @@ window.addEventListener('DOMContentLoaded', async function(event) {
     //   the movie is watched. Use .classList.remove('opacity-20')
     //   to remove the class if the element already contains it.
     // ⬇️ ⬇️ ⬇️
+    
+      
+      let button = document.querySelector(".watched-button")
 
-
-
+        button.addEventListener("click", async function() {
+        event.preventDefault()
+        button.classList.add("opacity-20")
+      })
   
     // ⬆️ ⬆️ ⬆️ 
     // End Step 3
